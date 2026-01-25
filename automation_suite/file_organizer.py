@@ -13,7 +13,7 @@ def get_category(extension):
             return categroy
     return "Others"
 
-def organize(folder_path):
+def organize_folder(folder_path):
     if not os.path.isdir(folder_path):
         raise ValueError("Invalid folder path")
     

@@ -1,5 +1,5 @@
 import os
-from automation_suite.file_organizer import organize
+from automation_suite.file_organizer import organize_folder
 
 def main():
     print("Smart Automation Suite - File Organizer v1\n")

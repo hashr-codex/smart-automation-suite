@@ -51,3 +51,13 @@ Organizes files inside a given directory into categorized folders based on file 
 - Automatic folder creation
 - safe file movement (no overwriting)
 - Clean sepration between logic and CLI
+
+## Development Log
+
+### Day 1 - Project Fondation
+- Definedlong-term project vision
+- Ceated modular folder structure
+- Implemented File Organzier as first core module
+- Separated CLI from logic
+
+> Focus: clean architecture and future scalability.
