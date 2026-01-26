@@ -61,3 +61,8 @@ Organizes files inside a given directory into categorized folders based on file 
 - Separated CLI from logic
 
 > Focus: clean architecture and future scalability.
+
+### Day 2 - Preview Mode Added
+- Added dry-run (preview) functionality
+- Users can safely see changes before files are moved
+- Improved real-world usability of the tool

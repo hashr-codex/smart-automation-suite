@@ -1,23 +1,22 @@
 import os
 from automation_suite import organize_folder
 
-def main():
-    print("Smart Automation Suite - File Organizer v1\n")
+print("Smart File Organizer")
+print("Paste the full folder path to organize")
 
-    while True:
-        path = input("Paste folder path to organize: ").strip().strip('"')
-        abs_path = os.path.abspath(path)
+path = input("Folder path: ").strip()
 
-        if os.path.isdir(abs_path):
-            try:
-                organize(abs_path)
-                print("\n Organization complete.")
-                break
-            except Exception as e:
-                print(f"Error: {e}")
+if not os.path.isdir(path):
+    print("Invalid path. Please try again.")
+    exit()
 
-        else:
-            print("Invalid Path. Try Again. \n")
+preview_choice = input("Preview before organizing? (y/n): ").strip().lower()
 
-if __name__ == "__main__":
-    main()
+preview = preview_choice == "y"
+
+organize_folder(path, preview)
+
+if preview:
+    print("\nPreview complete. No files were moved.")
+else:
+    print("\nOrganization complete.")
