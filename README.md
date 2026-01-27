@@ -2,15 +2,9 @@
 
 ## Overview
 
-Smart Automation Suite is a long-term Python project focused on building
-modular, practical automation tools for everyday system tasks.
+Smart Automation Suite is a long-term, evolving Python project focused on building practical automation tools with clean architecture and real-world usability in mind.
 
-Instead of creating many small, disconnected scripts, this project is
-designed to evolve gradually — with each module building on top of
-previous ideas, design decisions, and lessons learned.
-
-This repository reflects continuous development rather than one-time
-solutions.
+The project is designed to grow over time, with each feature added incrementally and documented as part of the development journey.
 
 ---
 
@@ -66,3 +60,9 @@ Organizes files inside a given directory into categorized folders based on file 
 - Added dry-run (preview) functionality
 - Users can safely see changes before files are moved
 - Improved real-world usability of the tool
+
+### Day 3 - Safety & Polish
+
+- Added Ignore rules to prevent re-organizing output folders
+- Implemented file movement summary
+- Improved overall robustness and user experience
