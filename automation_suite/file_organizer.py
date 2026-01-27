@@ -7,6 +7,17 @@ FILE_TYPE = {
     "Audio/Music": [".mp3", ".wav"],
 }
 
+IGNORE_FOLDER = {
+    "Images",
+    "Documents",
+    "Videos",
+    "Audio",
+    "Archives",
+    "Others",
+    ".git",
+    "__pycache__",
+}
+
 def get_category(extension):
     for categroy, extensions in FILE_TYPE.items():
         if extension.lower() in extensions:
