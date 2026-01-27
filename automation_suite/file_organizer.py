@@ -28,8 +28,14 @@ def organize_folder(folder_path, preview=False):
     if not os.path.isdir(folder_path):
         raise ValueError("Invalid folder path")
     
+    moved_count = 0
+    catergories_created = set()
+    
     for filename in os.listdir(folder_path):
         source = os.path.join(folder_path, filename)
+
+        if filename in IGNORE_FOLDER:
+            continue
 
         if not os.path.isfile(source):
             continue
@@ -50,6 +56,9 @@ def organize_folder(folder_path, preview=False):
 
         if not os.path.exists(destination):
             shutil.move(source, destination)
+            moved_count += 1
             print(f"Moved: {filename} - {category}/")
+    
+    return moved_count, len(catergories_created)
 
         
