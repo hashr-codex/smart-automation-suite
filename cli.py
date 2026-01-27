@@ -14,9 +14,13 @@ preview_choice = input("Preview before organizing? (y/n): ").strip().lower()
 
 preview = preview_choice == "y"
 
-organize_folder(path, preview)
+moved, categories = organize_folder(path, preview=preview)
 
 if preview:
     print("\nPreview complete. No files were moved.")
-else:
-    print("\nOrganization complete.")
+
+if not preview:
+    print("\nSummary")
+    print("-" * 20)
+    print(f"Files moved       : {moved}")
+    print(f"Categories created:  {categories}")
