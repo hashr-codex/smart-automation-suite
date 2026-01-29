@@ -1,0 +1,21 @@
+{
+    "ignore_folder": [
+        "Images",
+        "Document",
+        "Videos",
+        "Audio",
+        "Archives",
+        "Others",
+        ".git",
+        "__pycache__"
+    ],
+
+    "file_type": {
+        "Images": [".jpg", ".jpeg", ".png", "gif"],
+        "Document": [".pdf", ".txt", ".docx", ".xlsx"],
+        "Videos": [".mp4", ".mkv", ".avi"],
+        "Audio": [".mp3", ".wav"]
+    },
+
+    "default_preview": true
+}

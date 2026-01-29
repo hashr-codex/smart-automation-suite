@@ -66,3 +66,13 @@ Organizes files inside a given directory into categorized folders based on file 
 - Added Ignore rules to prevent re-organizing output folders
 - Implemented file movement summary
 - Improved overall robustness and user experience
+
+## Configuration
+
+Project behavior is controlled using `config.json`.
+
+- `ignore-folders`: folders thatwill not be processed.
+- `file_types`: file extensions to category mappings.
+- `default_preview`: default behavior for preview mode.
+
+This allows customization without modifying source code.

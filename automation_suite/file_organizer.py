@@ -1,28 +1,27 @@
 import os
 import shutil
-FILE_TYPE = {
-    "Images": [".jpg", ".jpeg", ".png", ".gif"],
-    "Documents": [".pdf", ".txt", ".docx", ".xlsx"],
-    "Videos": [".mp4", ".mkv", ".avi"],
-    "Audio/Music": [".mp3", ".wav"],
-}
+import json
 
-IGNORE_FOLDER = {
-    "Images",
-    "Documents",
-    "Videos",
-    "Audio",
-    "Archives",
-    "Others",
-    ".git",
-    "__pycache__",
-}
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "config.json")
+
+def load_config():
+    try:
+        with open(CONFIG_PATH, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        raise FileNotFoundError("config.json not found in the project root.")
+
+CONFIG = load_config()
+FILE_TYPE = CONFIG["file_type"]
+IGNORE_FOLDER = set(CONFIG["ignore_folder"])
 
 def get_category(extension):
     for categroy, extensions in FILE_TYPE.items():
         if extension.lower() in extensions:
             return categroy
     return "Others"
+
+
 
 def organize_folder(folder_path, preview=False):
     if not os.path.isdir(folder_path):

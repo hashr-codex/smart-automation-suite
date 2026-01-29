@@ -1,5 +1,12 @@
 import os
 from automation_suite import organize_folder
+import json
+
+with open("config.json", "r") as f:
+    config = json.load(f)
+
+default_preview = config.get("default_preview", False)
+
 
 print("Smart File Organizer")
 print("Paste the full folder path to organize")
@@ -10,9 +17,12 @@ if not os.path.isdir(path):
     print("Invalid path. Please try again.")
     exit()
 
-preview_choice = input("Preview before organizing? (y/n): ").strip().lower()
+preview_input = input(f"Preview before organizing? (y/n) [defualt: {'y' if default_preview else 'n'}]: ").strip().lower()
 
-preview = preview_choice == "y"
+if preview_input == "":
+    preview = default_preview
+else:
+    preview = preview_input == "y"
 
 moved, categories = organize_folder(path, preview=preview)
 
