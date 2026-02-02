@@ -67,6 +67,10 @@ Organizes files inside a given directory into categorized folders based on file 
 - Implemented file movement summary
 - Improved overall robustness and user experience
 
+### Day 4 - Cleaning
+- Added behavior to the preview mode.
+- Improved code scripts.
+
 ## Configuration
 
 Project behavior is controlled using `config.json`.

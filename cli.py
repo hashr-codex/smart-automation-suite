@@ -1,36 +1,66 @@
-import os
-from automation_suite import organize_folder
+import argparse
 import json
+import logging
+import os
 
-with open("config.json", "r") as f:
+from organizer import organize_folder
+from utils.logger import setup_logger
+
+
+def load_config():
+    with open("config.json", "r") as f:
+        return json.load(f)
+    
     config = json.load(f)
 
-default_preview = config.get("default_preview", False)
+    if "file_types" not in config:
+        raise KeyError("config.json is missing 'file_types'")
+
+    return config
 
 
-print("Smart File Organizer")
-print("Paste the full folder path to organize")
+def main():
+    config = load_config()
 
-path = input("Folder path: ").strip()
+    parser = argparse.ArgumentParser(
+        description="Smart Automation Suite – File Organizer"
+    )
 
-if not os.path.isdir(path):
-    print("Invalid path. Please try again.")
-    exit()
+    parser.add_argument(
+        "--path",
+        required=True,
+        help="Full path of the folder to organize"
+    )
 
-preview_input = input(f"Preview before organizing? (y/n) [defualt: {'y' if default_preview else 'n'}]: ").strip().lower()
+    parser.add_argument(
+        "--preview",
+        action="store_true",
+        help="Preview changes without moving files"
+    )
 
-if preview_input == "":
-    preview = default_preview
-else:
-    preview = preview_input == "y"
+    args = parser.parse_args()
 
-moved, categories = organize_folder(path, preview=preview)
+    setup_logger()
 
-if preview:
-    print("\nPreview complete. No files were moved.")
+    preview_mode = args.preview or config.get("default_preview", False)
 
-if not preview:
-    print("\nSummary")
-    print("-" * 20)
-    print(f"Files moved       : {moved}")
-    print(f"Categories created:  {categories}")
+    logging.info("Starting Smart File Organizer")
+
+    try:
+        moved, skipped = organize_folder(
+            folder_path=args.path,
+            file_types=config["file_types"],
+            preview=preview_mode
+        )
+
+        if preview_mode:
+            logging.info("Preview completed (no files moved)")
+        else:
+            logging.info(f"Completed: {moved} files moved, {skipped} skipped")
+
+    except Exception as e:
+        logging.error(f"Error: {e}")
+
+
+if __name__ == "__main__":
+    main()

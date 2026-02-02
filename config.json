@@ -17,5 +17,7 @@
         "Audio": [".mp3", ".wav"]
     },
 
-    "default_preview": true
+    "default_preview": false,
+    "logging_level": "INFO"
+
 }
