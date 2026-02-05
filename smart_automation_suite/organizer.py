@@ -1,8 +1,8 @@
 import os
 import shutil
 
-from utils.history import save_run
-from utils.report import save_dry_running_report
+from smart_automation_suite.utils.history import save_run
+from smart_automation_suite.utils.report import save_dry_running_report
 
 
 def get_category(extension, file_types):
@@ -60,6 +60,6 @@ def organize_folder(folder_path, file_types, preview=False):
 
     # ✅ Save dry-run report only in preview
     if preview and move_log:
-        save_dry_run_report(move_log)
+        save_dry_running_report(move_log)
 
     return moved, skipped
