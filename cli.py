@@ -3,15 +3,19 @@ import json
 import logging
 import os
 
-from organizer import organize_folder
-from utils.logger import setup_logger
-from utils.history import load_last_run, save_history
+from smart_automation_suite.organizer import organize_folder
+from smart_automation_suite.utils.logger import setup_logger
+from smart_automation_suite.utils.history import load_last_run, save_history
 
 def load_config():
-    with open("config.json", "r") as f:
-        return json.load(f)
-    
-    config = json.load(f)
+    base_dir = os.path.dirname(__file__)
+    config_path = os.path.join(base_dir, "config.json")
+
+    if not os.path.exists(config_path):
+        raise FileNotFoundError("config.json not found in package directory")
+
+    with open(config_path, "r") as f:
+        config = json.load(f)
 
     if "file_types" not in config:
         raise KeyError("config.json is missing 'file_types'")

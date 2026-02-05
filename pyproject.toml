@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smart-automation-suite"
+version = "0.1.2"
+description = "A smart CLI tool to organize files safelywith preview, history and undo support."
+authors = [{ name="Harsh" }]
+readme = "README.md"
+requires-python = ">=3.9"
+
+[project.scripts]
+smart-organize = "smart_automation_suite.cli:main"
