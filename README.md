@@ -67,9 +67,11 @@ Organizes files inside a given directory into categorized folders based on file 
 - Implemented file movement summary
 - Improved overall robustness and user experience
 
-### Day 4 - Cleaning
+### Day 4 - Cleaning and Additions
 - Added behavior to the preview mode.
 - Improved code scripts.
+- Preview mode now genrates a structured JSON report showing exactly what actions would be performed.
+- This allows users to audit changes before executing them, making the automation transparent and safe.
 
 ## Configuration
 

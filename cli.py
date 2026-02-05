@@ -5,7 +5,7 @@ import os
 
 from organizer import organize_folder
 from utils.logger import setup_logger
-
+from utils.history import load_last_run, save_history
 
 def load_config():
     with open("config.json", "r") as f:
@@ -38,7 +38,34 @@ def main():
         help="Preview changes without moving files"
     )
 
+    parser.add_argument(
+        "--undo",
+        action="store_true",
+        help="Undo the last organization run"
+    )
+
+
+
     args = parser.parse_args()
+    
+    if args.undo:
+        try:
+            last_run, remaining_history = load_last_run()
+            restored = 0
+
+            for move in last_run["moves"]:
+                if os.path.exists(move["destination"]):
+                    os.makedirs(os.path.dirname(move["source"]), exist_ok=True)
+                    os.rename(move["destination"], move["source"])
+                    restored += 1
+
+            save_history(remaining_history)
+            logging.info(f"Last run undone successfully. Restored {restored} files.")
+            return
+
+        except Exception as e:
+            print(f"Error during undo: {e}")
+            return
 
     setup_logger()
 

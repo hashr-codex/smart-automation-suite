@@ -10,7 +10,7 @@
         "__pycache__"
     ],
 
-    "file_type": {
+    "file_types": {
         "Images": [".jpg", ".jpeg", ".png", "gif"],
         "Document": [".pdf", ".txt", ".docx", ".xlsx"],
         "Videos": [".mp4", ".mkv", ".avi"],
